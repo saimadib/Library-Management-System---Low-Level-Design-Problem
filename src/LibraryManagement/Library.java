@@ -102,6 +102,14 @@ public class Library {
         }
     }
 
+    public void reserveBook(String patronEmail, String ISBN) {
+        Patron patron = patronManager.searchByEmail(patronEmail);
+        Book book = bookManager.searchByISBN(ISBN);
+        if (patron != null && book != null) {
+            transactionManager.reserveBook(book, patron);
+        }
+    }
+
     public void display() {
         System.out.println("Name: " + name);
         System.out.println("Address: " + address);
